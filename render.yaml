@@ -1,11 +1,12 @@
 services:
   - type: web
     name: tds-virtual-ta
-    env: python
-    plan: free
-    buildCommand: pip install -r requirements.txt
-    startCommand: uvicorn main:app --host 0.0.0.0 --port 8000
+    runtime: python
+    buildCommand: pip install --upgrade pip && pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port 10000
     envVars:
       - key: OPENAI_API_KEY
         sync: false
-
+    plan: free
+    region: oregon
+    pythonVersion: 3.10
