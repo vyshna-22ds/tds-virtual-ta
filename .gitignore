@@ -1,0 +1,8 @@
+# .gitignore
+venv/
+__pycache__/
+.env
+auth.json
+*.pyc
+*.pkl
+debug.png
