@@ -1,27 +1,18 @@
 FROM python:3.10-slim
 
 # Install dependencies
-RUN apt-get update && apt-get install -y \
-    build-essential \
-    cmake \
-    libopenblas-dev \
-    wget && \
+RUN apt-get update && apt-get install -y build-essential && \
     pip install --upgrade pip
 
-# Install precompiled faiss-cpu from pypi
-RUN pip install faiss-cpu
-
-# Set working directory
+# Copy code
 WORKDIR /app
-
-# Copy everything
 COPY . .
 
-# Install other Python dependencies
+# Install Python dependencies
 RUN pip install -r requirements.txt
 
-# Expose port for FastAPI
-EXPOSE 8000
+# Expose port
+EXPOSE 7860
 
-# Start the app
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+# Run FastAPI app
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "7860"]
